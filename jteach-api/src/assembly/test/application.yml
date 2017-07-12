@@ -1,0 +1,46 @@
+lipsapi:
+    serverUrl: http://test.api.lipspay.com
+    context: /lips-api
+server:
+    port: 8081
+    tomcat:
+      uri-encoding: UTF-8
+
+spring:
+    h2:
+        console:
+            enabled: true
+    http:
+        encoding:
+            force: true
+    redis:
+        embeded: true
+        host: 127.0.0.1
+        port: 6381
+        timeout: 2000
+        pool:
+            max-idle: 8
+            min-idle: 1
+            max-active: 8
+            max-wait: -1
+    datasource:
+        url: jdbc:mysql://rm-2ze064wvcst995p3g.mysql.rds.aliyuncs.com:3306/open_api?autoReconnect=true&characterEncoding=utf8&useSSL=false
+        driverClassName: com.mysql.jdbc.Driver
+        username: root
+        password: Adds575453
+        maxActive: 20
+        initialSize: 5
+        maxWait: 60000
+        minIdle: 5
+        initSqls:
+            - SET NAMES utf8mb4;
+management:
+    context-path: /$manage
+    security: {roles: SUPERUSER, enabled: false}
+account:
+    tokenTimeOutSecond: 7200 #token过期秒
+    tokenTimeOutSecondInterval: 60 #过期时间宽恕秒
+#security:
+#    user: {name: admin,password: 'admin'}
+#flyway:
+#    schemas: public

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.forkjoin.jteach</groupId>
+        <artifactId>jteach</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>jteach-api</artifactId>
+    <packaging>jar</packaging>
+    <properties>
+        <mainClass>com.lipspay.cloud.LipsCoffeeApplication</mainClass>
+        <commons.site-plugin.version>3.6</commons.site-plugin.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.forkjoin.jteach</groupId>
+            <artifactId>jteach-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-boot-starter</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+    </dependencies>
+    <!--<distributionManagement>-->
+    <!--<site>-->
+    <!--<id>apache.website</id>-->
+    <!--<name>Apache Commons Site</name>-->
+    <!--<url>scm:svn:https://svn.apache.org/repos/infra/websites/production/commons/content/proper/commons-lang/</url>-->
+    <!--</site>-->
+    <!--</distributionManagement>-->
+    <build>
+        <finalName>open-api</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${commons.site-plugin.version}</version>
+                <configuration>
+                    <!-- don't deploy site with maven-site-plugin -->
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-descriptor</id>
+                        <goals>
+                            <goal>attach-descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profile>test</profile>
+            </properties>
+        </profile>
+    </profiles>
+</project>
